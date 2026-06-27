@@ -249,13 +249,13 @@ chatForm.addEventListener('submit', async (e) => {
         if (indicator) indicator.remove();
 
         if (data.error) {
-            if (data.error.message && data.error.message.includes("Quota exceeded")) {
-                const newKey = prompt("The default API key has reached its quota limit.\n\nIf you have your own Gemini API key (get one for free at aistudio.google.com), please enter it below:");
+            if (data.error.message && (data.error.message.includes("Quota exceeded") || data.error.message.includes("authentication credentials") || data.error.message.includes("API key not valid"))) {
+                const newKey = prompt("The API key is invalid or has reached its quota limit.\n\nPlease enter your own Gemini API key (get one for free at aistudio.google.com):");
                 if (newKey) {
                     localStorage.setItem('gemini_api_key', newKey);
                     throw new Error("New API key saved! Please try your question again.");
                 } else {
-                    throw new Error("We are receiving too many requests right now! Please wait a while or provide your own API key.");
+                    throw new Error("A valid API key is required. Please try again.");
                 }
             }
             throw new Error(data.error.message || "Failed to get response from AI");
