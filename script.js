@@ -226,18 +226,23 @@ chatForm.addEventListener('submit', async (e) => {
     chatArea.scrollTop = chatArea.scrollHeight;
 
     try {
-        let apiKey = localStorage.getItem('gemini_api_key') || "AQ.Ab8RN6IKhIu3zMxPeSXrjMU9RtVVYHcclOT-klwBjXWeTVQ6-g";
+        // Using the provided Groq API key for shared use
+        let apiKey = "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";
 
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
             method: 'POST',
             headers: {
+                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: `You are a friendly, encouraging AI Homework Helper for a student. Provide a detailed, comprehensive, and step-by-step answer to the following question: ${text}`
-                    }]
+                model: "llama-3.3-70b-versatile",
+                messages: [{
+                    role: "system",
+                    content: "You are a friendly, encouraging AI Homework Helper for a student. Provide a detailed, comprehensive, and step-by-step answer to the user's question."
+                }, {
+                    role: "user",
+                    content: text
                 }]
             })
         });
@@ -249,20 +254,11 @@ chatForm.addEventListener('submit', async (e) => {
         if (indicator) indicator.remove();
 
         if (data.error) {
-            if (data.error.message && (data.error.message.includes("Quota exceeded") || data.error.message.includes("authentication credentials") || data.error.message.includes("API key not valid"))) {
-                const newKey = prompt("The API key is invalid or has reached its quota limit.\n\nPlease enter your own Gemini API key (get one for free at aistudio.google.com):");
-                if (newKey) {
-                    localStorage.setItem('gemini_api_key', newKey);
-                    throw new Error("New API key saved! Please try your question again.");
-                } else {
-                    throw new Error("A valid API key is required. Please try again.");
-                }
-            }
             throw new Error(data.error.message || "Failed to get response from AI");
         }
 
-        if (data.candidates && data.candidates.length > 0) {
-            const aiText = data.candidates[0].content.parts[0].text;
+        if (data.choices && data.choices.length > 0) {
+            const aiText = data.choices[0].message.content;
             
             // Add AI response
             const aiMsg = createMessageElement(aiText, false);
