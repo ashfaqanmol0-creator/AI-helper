@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Homework Helper</title>
+    <meta name="description" content="A friendly AI assistant to help you with your homework.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container glass-panel">
+        <header class="app-header">
+            <div class="header-content">
+                <div class="avatar-container">
+                    <img src="https://api.dicebear.com/7.x/bottts/svg?seed=homework-bot&backgroundColor=e6e6fa" alt="AI Avatar" class="ai-avatar">
+                </div>
+                <div class="header-text">
+                    <h1>AI Homework Helper</h1>
+                    <p class="status">Online & Ready to Help! ✨</p>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%;"></div>
+                </div>
+                <span class="progress-text">Lvl 3 Scholar - 65%</span>
+            </div>
+        </header>
+
+        <section class="chat-area" id="chat-area">
+            <div class="message ai-message glass-card">
+                <div class="message-content">
+                    <p>Hi there! 👋 I'm your AI Homework Helper. What subject are we tackling today?</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="input-area">
+            <form id="chat-form" class="glass-input-container">
+                <button type="button" class="mic-btn upload-btn" id="mic-btn" aria-label="Voice Input">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14C13.6569 14 15 12.6569 15 11V5C15 3.34315 13.6569 2 12 2C10.3431 2 9 3.34315 9 5V11C9 12.6569 10.3431 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 10V11C19 14.866 15.866 18 12 18C8.13401 18 5 14.866 5 11V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 18V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 22H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <label for="image-upload" class="upload-btn" aria-label="Upload Image">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M17 8L12 3L7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </label>
+                <input type="file" id="image-upload" accept="image/*" style="display: none;">
+                <input type="text" id="user-input" placeholder="Type your homework question here..." autocomplete="off">
+                <button type="submit" class="send-btn" aria-label="Send Message">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </form>
+        </footer>
+    </main>
+
+    <script src="script.js?v=4"></script>
+</body>
+</html>
